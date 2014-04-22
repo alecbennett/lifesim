@@ -1,0 +1,27 @@
+#grid {
+	border-left: 1px dotted #999999;
+	border-top: 1px dotted #999999;
+	text-align: justify;
+	font-size: 0;
+}
+#grid div {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	border-right: 1px dotted #999999;
+	border-bottom: 1px dotted #999999;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	font-size: 10px;
+}
+.creature {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	opacity: 0.5;
+	border-radius:20px;
+	font-size: 9px;
+	line-height: 20px;
+	text-align: center;
+}
