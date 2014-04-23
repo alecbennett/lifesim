@@ -37,6 +37,7 @@ function Creature(grid, opts){
 	this.html = "";
 	this.x = 2;
 	this.y = 2;
+	this.path;
 }
 Creature.prototype = {
 	move: function move(x, y){
@@ -75,6 +76,9 @@ Creature.prototype = {
 				this.y = mygrid.y - 1;
 			}
 		 }
+		if (mygrid.grid[this.x][this.y].type != "Rock"){
+			mygrid.setVegetation(this.x, this.y, Rock);
+		}
 	},
 	mate: function mate(partner){
 		if (mygrid.getPopulation() < mygrid.getMaxPopulation()){ 
@@ -98,6 +102,9 @@ Creature.prototype = {
 		}
 		return null;
 	},
+	setPath: function setPath(xl, yl){
+		this.path = {"x":xl, "y":yl};
+	},
 	draw: function draw(){
 		this.html = "<div class='creature'";
 		this.html += " style='background-color: " + this.color + ";";
@@ -108,7 +115,7 @@ Creature.prototype = {
 	},
 	increaseAge: function increaseAge(){
 		this.age += 1;
-		if (this.age > 100){
+		if (this.age > 250){
 			return true;
 		}
 		return null;

@@ -7,26 +7,32 @@
 	<script src="jquery.timer.js"></script>
 	<script src="grid.js" type="text/javascript"></script>
 	<script src="creature.js" type="text/javascript"></script>
+	<script src="vegetation.js" type="text/javascript"></script>
 	<link href="style.css" rel="stylesheet">
 </head>
 
 <body>
+
 	<div id="container" style="position: relative;">
 	<div id="grid" style="position: absolute;"></div>
 	<div id="creatures" style="position: absolute;"></div>
 	</div>
+	<div id="controls" style="text-size: 200px; height: 100px;margin: auto; width: 100px;">
+		<div id="pause" style="background-color: gray; margin: 5px;">Pause</div>
+		<div id="resume" style="background-color: gray; margin: 5px;">Resume</div>
+	</div>
 	<script type="text/javascript">
-		var mygrid = new Grid(20,20);
+		var mygrid = new Grid(20,50);
 		$(document).ready(function(){
-			mygrid.draw();
+			mygrid.init();
 
-			var alpha = new Creature(mygrid, {"name":"Boy","gender":"Male"});
+			var alpha = new Creature(mygrid, {"gender":"Male"});
 			alpha.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var beta = new Creature(mygrid, {"name":"Girl", "gender":"Female"});
+			var beta = new Creature(mygrid, {"gender":"Female"});
 			beta.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var delta = new Creature(mygrid, {"name":"Girl", "gender":"Female"});
+			var delta = new Creature(mygrid, {"gender":"Male"});
 			delta.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var gamma = new Creature(mygrid, {"name":"Girl", "gender":"Female"});
+			var gamma = new Creature(mygrid, {"gender":"Female"});
 			gamma.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
 			var creatureList = new Array();
 			creatureList.push(alpha);
@@ -37,6 +43,7 @@
 				$("#creatures").html("");
 				for (i = 0; i < creatureList.length; i++){
 					creatureList[i].wander();
+					mygrid.drawCell(creatureList[i].getX(), creatureList[i].getY());
 					if (creatureList[i].increaseAge() != null){
 						creatureList.splice(i,1);
 						mygrid.Population--;
@@ -53,12 +60,7 @@
 					}
 					$("#creatures").append(creatureList[i].draw());
 				}
-				/*
-				for (i = 0; i < creatureList.length; i++){
-					if (creatureList[i].getAge() > 100){
-						creatureList.splice(i,1);
-					}
-				}*/
+				//mygrid.draw();
 			}	
 			var timer = $.timer(function() {
 				if (creatureList !== undefined){
@@ -67,6 +69,12 @@
 			});
 
 			timer.set({ time : 100, autostart : true });
+			$("#pause").click(function(){
+				timer.pause();
+			});
+			$("#resume").click(function(){
+				timer.play();
+			});
 		});
 		
 	</script>
