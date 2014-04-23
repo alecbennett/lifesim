@@ -15,6 +15,7 @@ function Grid(x, y){
 			} else {
 				this.grid[i][j] = new Rock();
 			}
+			this.grid[i][j] = new Grassland();
 		}
 	}
 	this.Population = 0;
