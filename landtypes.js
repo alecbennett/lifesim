@@ -1,14 +1,14 @@
-function Vegetation(){
-	this.type = "Vegetation";
+function LandType(){
+	this.type = "LandType";
 	this.age;
 	this.color = "pink";
 }
-Vegetation.prototype = {
+LandType.prototype = {
 	grow: function grow(){
 
 	}
 }
-Grassland.prototype = new Vegetation();
+Grassland.prototype = new LandType();
 Grassland.prototype.constructor = Grassland;
 
 function Grassland(){
@@ -16,9 +16,15 @@ function Grassland(){
 	this.color = "green"
 }
 
-Rock.prototype = new Vegetation();
+Rock.prototype = new LandType();
 Rock.prototype.constructor = Rock;
 function Rock(){
 	this.type = "Rock";
 	this.color = "gray"
+}
+Water.prototype = new LandType();
+Water.prototype.constructor = Water;
+function Water(){
+	this.type = "Rock";
+	this.color = "blue"
 }

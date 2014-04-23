@@ -77,7 +77,7 @@ Creature.prototype = {
 			}
 		 }
 		if (mygrid.grid[this.x][this.y].type != "Rock"){
-			mygrid.setVegetation(this.x, this.y, Rock);
+			mygrid.setLandType(this.x, this.y, Rock);
 		}
 	},
 	mate: function mate(partner){

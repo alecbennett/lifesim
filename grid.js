@@ -10,12 +10,14 @@ function Grid(x, y){
 	for (i = 0; i < this.x; i++){
 		this.grid[i] = new Array();
 		for (j = 0; j < this.y; j++){
-			if (Math.random() < 0.5){
+			var randland = Math.random();
+			if (randland < 0.5){
 				this.grid[i][j] = new Grassland();
+			} else if (randland < 0.60){
+				this.grid[i][j] = new Water();
 			} else {
 				this.grid[i][j] = new Rock();
 			}
-			this.grid[i][j] = new Grassland();
 		}
 	}
 	this.Population = 0;
@@ -60,7 +62,7 @@ Grid.prototype = {
 			}
 		}
 	},
-	setVegetation: function setVegetation(xl, yl, vt){
+	setLandType: function setLandType(xl, yl, vt){
 		this.grid[xl][yl] = new vt();
 	}
 }
