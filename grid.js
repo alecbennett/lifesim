@@ -13,12 +13,23 @@ function Grid(x, y){
 			var randland = Math.random();
 			if (randland < 0.5){
 				this.grid[i][j] = new Grassland();
-			} else if (randland < 0.60){
+			} else if (randland < 0.55){
 				this.grid[i][j] = new Water();
-			} else {
+			} else if (randland < 0.65){
 				this.grid[i][j] = new Rock();
+			} else {
+				this.grid[i][j] = new Grassland();
+				//this.grid[i][j] = new Dirt();
 			}
 		}
+	}
+	for (i = 10; i <= 40; i++){
+		this.grid[i][10] = new Mountain();
+		this.grid[i][40] = new Mountain();
+	}
+	for (i = 10; i < 40; i++){
+		this.grid[10][i] = new Mountain();
+		this.grid[40][i] = new Mountain();
 	}
 	this.Population = 0;
 	this.MaxPopulation = 30;
@@ -55,10 +66,11 @@ Grid.prototype = {
 	timeStep: function timeStep(){
 		
 	},
-	regrowVegetation: function regrowVegetation(){
+	success: function success(){
 		for (i = 0; i < this.y; i++){
 			for (j = 0; j < this.x; j++){
-					
+				this.grid[j][i].succeed(i, j);
+//				this.drawCell(i,j);
 			}
 		}
 	},

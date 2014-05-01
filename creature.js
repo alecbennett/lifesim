@@ -52,6 +52,8 @@ Creature.prototype = {
 	},
 	wander: function wander(){
 		 var direction = Math.floor((Math.random()*5)+1);
+		 var oldx = this.x;
+		var oldy = this.y;
 		 if (direction == 1){
 			this.x += 1;
 			if (this.x > mygrid.x - 1){
@@ -78,9 +80,12 @@ Creature.prototype = {
 		 } else {
 
 		}
-		if (mygrid.grid[this.x][this.y].type != "Rock"){
-			mygrid.setLandType(this.x, this.y, Rock);
+		if (!mygrid.grid[this.x][this.y].passable){
+			this.x = oldx;
+			this.y = oldy;
+
 		}
+		mygrid.grid[this.x][this.y].consume(this.x, this.y);
 	},
 	mate: function mate(partner){
 		if (mygrid.getPopulation() < mygrid.getMaxPopulation()){ 

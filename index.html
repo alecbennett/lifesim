@@ -25,20 +25,18 @@
 		var mygrid = new Grid(50,50);
 		$(document).ready(function(){
 			mygrid.init();
-
-			var alpha = new Creature(mygrid, {"gender":"Male"});
-			alpha.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var beta = new Creature(mygrid, {"gender":"Female"});
-			beta.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var delta = new Creature(mygrid, {"gender":"Male"});
-			delta.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
-			var gamma = new Creature(mygrid, {"gender":"Female"});
-			gamma.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
+			var nM = 4;
 			var creatureList = new Array();
-			creatureList.push(alpha);
-			creatureList.push(beta);
-			creatureList.push(delta);
-			creatureList.push(gamma);
+			for (var i = 0; i < nM; i++){
+				var x = new Creature(mygrid, {"gender":"Male"});
+				x.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
+				creatureList.push(x);
+			}
+			for (var i = 0; i < nM; i++){
+				var x = new Creature(mygrid, {"gender":"Female"});
+				x.move(Math.floor((Math.random()*mygrid.x)),Math.floor((Math.random()*mygrid.y)));
+				creatureList.push(x);
+			}
 			function xyz(){
 				$("#creatures").html("");
 				for (i = 0; i < creatureList.length; i++){
@@ -60,7 +58,7 @@
 					}
 					$("#creatures").append(creatureList[i].draw());
 				}
-				//mygrid.draw();
+				mygrid.success();
 			}	
 			var timer = $.timer(function() {
 				if (creatureList !== undefined){
@@ -68,7 +66,7 @@
 				}
 			});
 
-			timer.set({ time : 100, autostart : true });
+			timer.set({ time : 25, autostart : true });
 			$("#pause").click(function(){
 				timer.pause();
 			});
