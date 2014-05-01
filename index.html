@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+	<div id="CreatureCount"></div>
 	<div id="container" style="position: relative;">
 	<div id="grid" style="position: absolute;"></div>
 	<div id="creatures" style="position: absolute;"></div>
@@ -59,6 +59,7 @@
 					$("#creatures").append(creatureList[i].draw());
 				}
 				mygrid.success();
+				$("#CreatureCount").html(creatureCount);
 			}	
 			var timer = $.timer(function() {
 				if (creatureList !== undefined){
