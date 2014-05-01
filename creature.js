@@ -51,7 +51,7 @@ Creature.prototype = {
 		return this.y;
 	},
 	wander: function wander(){
-		 var direction = Math.floor((Math.random()*4)+1);
+		 var direction = Math.floor((Math.random()*5)+1);
 		 if (direction == 1){
 			this.x += 1;
 			if (this.x > mygrid.x - 1){
@@ -75,7 +75,9 @@ Creature.prototype = {
 			if (this.y < 0){
 				this.y = mygrid.y - 1;
 			}
-		 }
+		 } else {
+
+		}
 		if (mygrid.grid[this.x][this.y].type != "Rock"){
 			mygrid.setLandType(this.x, this.y, Rock);
 		}
